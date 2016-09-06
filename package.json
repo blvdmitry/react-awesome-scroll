@@ -1,0 +1,19 @@
+{
+  "name": "react-custom-scroll",
+  "version": "0.0.1",
+  "description": "React scrollbar and scroll area components with native mechanics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BananaBobby/react-custom-scroll.git"
+  },
+  "author": "Dmitry Belyaev ( blv.dmitry@gmail.com )",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BananaBobby/react-custom-scroll/issues"
+  },
+  "homepage": "https://github.com/BananaBobby/react-custom-scroll#readme"
+}
