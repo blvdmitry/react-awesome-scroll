@@ -1,0 +1,26 @@
+.scroll
+	position: relative
+	height: 100%
+	overflow: hidden
+
+	&__container
+		padding-right: 100px
+		margin-right: -100px
+		overflow: auto
+		max-height: 100%
+		position: relative
+
+	&__inner
+		position: relative
+
+	&_dark
+		.scroll
+			&__bar
+				background: rgba(#000, .1)
+
+			&__track
+				opacity: .5
+
+				&:hover
+				&_active
+					opacity: 1
