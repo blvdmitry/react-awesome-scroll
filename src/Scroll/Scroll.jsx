@@ -1,97 +1,106 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import b from 'b_';
+import React from 'react';
+import styles from './styles';
 
-import Scrollbar from '../Scrollbar/Scrollbar';
+class Scroll extends React.PureComponent {
 
-class Scroll extends Component {
-	constructor(props) {
-		super(props);
+  elRoot;
+  elContainer;
+  elInner;
+  elScroll;
 
-		this.state = {
-			hasScroll: true,
-			isDragging: false,
-			scrollRatio: null,
-			scrollPosition: 0,
+  state = {
+    hasScroll: true,
+    scrollHeight: 0,
+    heightRatio: 0,
+    scrollPosition: 0,
+    isDragging: false,
+  };
 
-			// Ratio of container and scrollbar heights
-			heightRatio: null
-		};
+  toggleScroll() {
+    const elScroll = this.elScroll;
+    const elInner = this.elInner;
+    const elRoot = this.elRoot;
+    const ratio = (elRoot.offsetHeight / elInner.offsetHeight) ;
 
-		this._elems = {
-			parent: null,
-			container: null,
-			inner: null,
-			scrollbar: null
-		};
+    this.setState({
+      hasScroll: ratio < 1,
+      scrollHeight: ratio * elScroll.offsetHeight,
+      heightRatio: elScroll.offsetHeight / elInner.offsetHeight,
+    });
+  }
 
-		this.toggleScroll = this.toggleScroll.bind(this);
-		this.onScroll = this.onScroll.bind(this);
-		this.scrollHandler = this.scrollHandler.bind(this);
-	}
+  handleScroll = () => {
+    const { heightRatio } = this.state;
 
-	componentDidMount() {
-		this.toggleScroll();
-		window.addEventListener('resize', this.toggleScroll);
-	}
+    this.setState({
+      scrollPosition: heightRatio * this.elContainer.scrollTop
+    });
+  };
 
-	onScroll(event) {
-		this.setState({ scrollPosition: this.state.heightRatio * this._elems.container.scrollTop });
-	}
+  handleScrollClick = () => {
 
-	scrollHandler(position) {
-		this._elems.container.scrollTop = position / this.state.heightRatio;
-	}
+  };
 
-	/**
-	 * Show/hide scroll based on ratio of containers
-	 */
-	toggleScroll() {
-		let scrollbar = this._elems.scrollbar;
-		let ratio = this._elems.parent.offsetHeight / this._elems.inner.offsetHeight;
-		this.setState({
-			hasScroll: ratio < 1,
-			scrollRatio: ratio,
-			heightRatio: scrollbar && (scrollbar.offsetHeight / this._elems.inner.offsetHeight)
-		});
-	}
+  handleBarMouseDown = () => {
 
-	render() {
-		return (
-			<div
-				className={b('scroll', this.props.mods)}
-				ref={c => this._elems.parent = c}
-			>
-				<div
-					className="scroll__container"
-					ref={c => this._elems.container = c}
-					onScroll={this.onScroll}
-				>
-					<div
-						className="scroll__inner"
-						ref={c => this._elems.inner = c}
-					>
-						{ this.props.children }
-					</div>
-				</div>
+  };
 
-				{
-					this.state.hasScroll && (
-						<Scrollbar
-							scrollHandler={this.scrollHandler}
-							ref={c => this._elems.scrollbar = ReactDOM.findDOMNode(c)}
-							trackHeight={`${this.state.scrollRatio * 100}%`}
-							trackPosition={Math.floor(this.state.scrollPosition)}
-						/>
-					)
-				}
-			</div>
-		);
-	}
-};
+  componentDidMount() {
+    this.toggleScroll();
+    window.addEventListener('resize', this.toggleScroll);
+  }
 
-Scroll.propTypes = {
-		mods: PropTypes.object
-};
+  render() {
+    const {
+      className, containerClassName, innerClassName, scrollClassName, barClassName,
+      children,
+    } = this.props;
+    const { hasScroll, scrollHeight, scrollPosition } = this.state;
+
+    return (
+      <div
+        style={styles.root}
+        className={className}
+        ref={c => this.elRoot = c}
+      >
+        <div
+          style={styles.container}
+          className={containerClassName}
+          ref={c => this.elContainer = c}
+          onScroll={this.handleScroll}
+        >
+          <div
+            style={styles.inner}
+            className={innerClassName}
+            ref={c => this.elInner = c}
+          >
+            { children }
+          </div>
+        </div>
+
+        {
+          hasScroll && (
+            <div
+              ref={c => this.elScroll = c}
+              style={styles.scroll}
+              className={scrollClassName}
+              onClick={this.handleScrollClick}
+            >
+              <div
+                style={{
+                  ...styles.bar,
+                  height: scrollHeight,
+                  top: scrollPosition
+                }}
+                className={barClassName}
+                onMouseDown={this.handleBarMouseDown}
+              />
+            </div>
+          )
+        }
+      </div>
+    )
+  }
+}
 
 export default Scroll;

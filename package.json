@@ -4,7 +4,7 @@
   "description": "React scrollbar and scroll area components with native mechanics",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/BananaBobby/react-custom-scroll/issues"
   },
-  "homepage": "https://github.com/BananaBobby/react-custom-scroll#readme"
+  "homepage": "https://github.com/BananaBobby/react-custom-scroll#readme",
+  "devDependencies": {
+    "@storybook/react": "^3.2.8"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
 }
