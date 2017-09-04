@@ -5,7 +5,7 @@ export default {
     overflow: 'hidden',
   },
   container: {
-    paddingRight: 100,
+    paddingRight: 115,
     marginRight: -100,
     overflow: 'auto',
     maxHeight: '100%',

@@ -1,12 +1,23 @@
 import React from 'react';
 import styles from './styles';
 
+/**
+ * TODO:
+ * - Handle bar drag
+ * - Handle scroll click
+ * - Add 2 flags for managing default styles
+ * - Add activeClassName for bar
+ */
+
 class Scroll extends React.PureComponent {
 
   elRoot;
   elContainer;
   elInner;
   elScroll;
+  elBar;
+  startDragMousePosition;
+  startDragPosition;
 
   state = {
     hasScroll: true,
@@ -16,7 +27,7 @@ class Scroll extends React.PureComponent {
     isDragging: false,
   };
 
-  toggleScroll() {
+  toggleScroll = () => {
     const elScroll = this.elScroll;
     const elInner = this.elInner;
     const elRoot = this.elRoot;
@@ -27,7 +38,26 @@ class Scroll extends React.PureComponent {
       scrollHeight: ratio * elScroll.offsetHeight,
       heightRatio: elScroll.offsetHeight / elInner.offsetHeight,
     });
+  };
+
+  limitTrackPosition(position) {
+    const elRoot = this.elRoot;
+    const elBar = this.elBar;
+
+    return Math.max(0, Math.min(position, elRoot.offsetHeight - elBar.offsetHeight));
   }
+
+  scrollToPosition = (position) => {
+    const { heightRatio } = this.state;
+    const top = this.elScroll.getBoundingClientRect().top;
+    const scrollPosition = position - top;
+    const limitedPosition = this.limitTrackPosition(scrollPosition);
+
+    this.elContainer.scrollTop = scrollPosition / heightRatio;
+    this.setState({
+      scrollPosition: limitedPosition,
+    });
+  };
 
   handleScroll = () => {
     const { heightRatio } = this.state;
@@ -37,12 +67,38 @@ class Scroll extends React.PureComponent {
     });
   };
 
-  handleScrollClick = () => {
+  handleScrollClick = (event) => {
+    const { isDragging } = this.state;
+    const elBar = this.elBar;
 
+    if (!isDragging && event.target !== elBar) {
+      this.scrollToPosition(event.pageY);
+    }
   };
 
-  handleBarMouseDown = () => {
+  handleDragStart = (event) => {
+    const { scrollPosition } = this.state;
 
+    this.startDragMousePosition = event.pageY;
+    this.startDragPosition = scrollPosition;
+    this.setState({ isDragging: true });
+
+    document.addEventListener('mousemove', this.handleDrag);
+    document.addEventListener('mouseup', this.handleDragEnd);
+  };
+
+  handleDrag = (event) => {
+    const { isDragging } = this.state;
+
+    if (isDragging) {
+      this.scrollToPosition(this.startDragPosition + event.pageY - this.startDragMousePosition);
+    }
+  };
+
+  handleDragEnd = () => {
+    this.setState({
+      isDragging: false
+    });
   };
 
   componentDidMount() {
@@ -90,10 +146,11 @@ class Scroll extends React.PureComponent {
                 style={{
                   ...styles.bar,
                   height: scrollHeight,
-                  top: scrollPosition
+                  top: scrollPosition,
                 }}
+                ref={c => this.elBar = c}
                 className={barClassName}
-                onMouseDown={this.handleBarMouseDown}
+                onMouseDown={this.handleDragStart}
               />
             </div>
           )
