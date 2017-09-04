@@ -5,17 +5,22 @@ export default {
     overflow: 'hidden',
   },
   container: {
-    paddingRight: 115,
+    paddingRight: 100,
     marginRight: -100,
     overflow: 'auto',
     maxHeight: '100%',
     position: 'relative',
+  },
+  containerUI: {
+    paddingRight: 110,
   },
   inner: {
     position: 'relative',
   },
   scroll: {
     position: 'absolute',
+  },
+  scrollUI: {
     right: 5,
     width: 5,
     top: 10,
@@ -25,12 +30,14 @@ export default {
     cursor: 'pointer',
   },
   bar: {
+    position: 'relative',
+  },
+  barUI: {
     background: '#333',
     opacity: 0.3,
     minHeight: 25,
     height: 0,
     borderRadius: 3,
-    position: 'relative',
     userSelect: 'none',
   },
 };

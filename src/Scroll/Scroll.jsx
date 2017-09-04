@@ -1,14 +1,6 @@
 import React from 'react';
 import styles from './styles';
 
-/**
- * TODO:
- * - Handle bar drag
- * - Handle scroll click
- * - Add 2 flags for managing default styles
- * - Add activeClassName for bar
- */
-
 class Scroll extends React.PureComponent {
 
   elRoot;
@@ -41,19 +33,17 @@ class Scroll extends React.PureComponent {
   };
 
   limitTrackPosition(position) {
-    const elRoot = this.elRoot;
+    const elScroll = this.elScroll;
     const elBar = this.elBar;
 
-    return Math.max(0, Math.min(position, elRoot.offsetHeight - elBar.offsetHeight));
+    return Math.max(0, Math.min(position, elScroll.offsetHeight - elBar.offsetHeight));
   }
 
   scrollToPosition = (position) => {
     const { heightRatio } = this.state;
-    const top = this.elScroll.getBoundingClientRect().top;
-    const scrollPosition = position - top;
-    const limitedPosition = this.limitTrackPosition(scrollPosition);
+    const limitedPosition = this.limitTrackPosition(position);
 
-    this.elContainer.scrollTop = scrollPosition / heightRatio;
+    this.elContainer.scrollTop = position / heightRatio;
     this.setState({
       scrollPosition: limitedPosition,
     });
@@ -70,9 +60,10 @@ class Scroll extends React.PureComponent {
   handleScrollClick = (event) => {
     const { isDragging } = this.state;
     const elBar = this.elBar;
+    const top = this.elScroll.getBoundingClientRect().top;
 
     if (!isDragging && event.target !== elBar) {
-      this.scrollToPosition(event.pageY);
+      this.scrollToPosition(event.pageY - top);
     }
   };
 
@@ -108,25 +99,48 @@ class Scroll extends React.PureComponent {
 
   render() {
     const {
-      className, containerClassName, innerClassName, scrollClassName, barClassName,
+      className, containerClassName, innerClassName, scrollClassName, barClassName, barActiveClassName,
       children,
+      disableUIStyles, disableStyles,
     } = this.props;
-    const { hasScroll, scrollHeight, scrollPosition } = this.state;
+    const { hasScroll, scrollHeight, scrollPosition, isDragging } = this.state;
+    const rootStyles = !disableStyles && styles.root;
+    const containerStyles = Object.assign(
+      {},
+      !disableStyles && styles.container,
+      !disableUIStyles && !disableStyles && styles.containerUI,
+    );
+    const innerStyles = !disableStyles && styles.inner;
+    const scrollStyles = Object.assign(
+      {},
+      !disableStyles && styles.scroll,
+      !disableUIStyles && !disableStyles && styles.scrollUI,
+    );
+    const barStyles = Object.assign(
+      {},
+      !disableStyles && styles.bar,
+      !disableUIStyles && !disableStyles && styles.barUI,
+    );
+    const barClassNames = [barClassName];
+
+    if (isDragging && barActiveClassName) {
+      barClassNames.push(barActiveClassName);
+    }
 
     return (
       <div
-        style={styles.root}
+        style={rootStyles}
         className={className}
         ref={c => this.elRoot = c}
       >
         <div
-          style={styles.container}
+          style={containerStyles}
           className={containerClassName}
           ref={c => this.elContainer = c}
           onScroll={this.handleScroll}
         >
           <div
-            style={styles.inner}
+            style={innerStyles}
             className={innerClassName}
             ref={c => this.elInner = c}
           >
@@ -138,18 +152,18 @@ class Scroll extends React.PureComponent {
           hasScroll && (
             <div
               ref={c => this.elScroll = c}
-              style={styles.scroll}
+              style={scrollStyles}
               className={scrollClassName}
               onClick={this.handleScrollClick}
             >
               <div
                 style={{
-                  ...styles.bar,
+                  ...barStyles,
                   height: scrollHeight,
                   top: scrollPosition,
                 }}
                 ref={c => this.elBar = c}
-                className={barClassName}
+                className={barClassNames.join(' ')}
                 onMouseDown={this.handleDragStart}
               />
             </div>
