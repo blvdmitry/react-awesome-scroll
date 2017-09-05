@@ -1,2 +1,3 @@
-# react-custom-scroll [WIP]
-Custom scrollbar and scroll area components with native mechanics.
+# react-awesome-scroll
+
+An easy to implement and customize React scrollbar component with OS native scroll behavior.

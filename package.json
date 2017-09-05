@@ -1,8 +1,8 @@
 {
-  "name": "react-custom-scroll",
+  "name": "react-awesome-scroll",
   "version": "0.0.1",
-  "description": "React scrollbar and scroll area components with native mechanics",
-  "main": "lib/index.js",
+  "description": "An easy to implement and customize React scrollbar component with OS native scroll behavior.",
+  "main": "src/index.js",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
@@ -22,5 +22,20 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
-  }
+  },
+  "keywords": [
+    "react",
+    "react-custom-scroll",
+    "react-awesome-scroll",
+    "awesome-scroll",
+    "react-component",
+    "customscroll",
+    "custom-scroll",
+    "scroll",
+    "scrollbar",
+    "custom-scrollbar",
+    "ui component",
+    "ui",
+    "component"
+  ]
 }
