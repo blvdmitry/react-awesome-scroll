@@ -27,8 +27,4 @@ module.exports = [{
   //   new UglifyJSPlugin(),
   // ],
   // devtool: 'source-map',
-  externals: {
-    react: 'react',
-    'react-dom': 'react-dom',
-  }
 }];
