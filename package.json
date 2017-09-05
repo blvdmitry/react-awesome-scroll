@@ -2,9 +2,10 @@
   "name": "react-awesome-scroll",
   "version": "0.0.5",
   "description": "An easy to implement and customize React scrollbar component with OS native scroll behavior.",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,14 @@
   },
   "homepage": "https://github.com/BananaBobby/react-custom-scroll#readme",
   "devDependencies": {
-    "@storybook/react": "^3.2.8"
+    "@storybook/react": "^3.2.8",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.5.5"
   },
   "dependencies": {
     "react": "^15.6.1",

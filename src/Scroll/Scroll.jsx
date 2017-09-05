@@ -3,10 +3,7 @@ import styles from './styles';
 
 /**
  * TODO:
- * - Prepare for npm
- * - Find the package name (react-awesome-scroll)
  * - Readme
- * - Publish
  * - Submit to frontend collectives
  */
 
