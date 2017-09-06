@@ -1,7 +1,5 @@
 # react-awesome-scroll
 
-An easy to implement and customize React scrollbar component with OS native scroll behavior.
-
 [![npm](https://img.shields.io/badge/npm-react--awesome--scroll-brightgreen.svg?style=flat-square)]()
 [![npm version](https://img.shields.io/npm/v/react-awesome-scroll.svg?style=flat-square)](https://www.npmjs.com/package/react-awesome-scroll)
 
