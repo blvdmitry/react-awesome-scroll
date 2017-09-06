@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const webpack = require('webpack');
-// const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = [{
   entry: './src/Scroll/Scroll.jsx',
@@ -20,7 +20,7 @@ module.exports = [{
       use: {
         loader: 'babel-loader',
         options: {
-          presets: ['stage-2', 'react'],
+          presets: ['es2015', 'stage-2', 'react'],
         },
       }
     }],
@@ -33,9 +33,9 @@ module.exports = [{
       amd: 'react',
     }
   },
-  // plugins: [
-  //   new UglifyJSPlugin(),
-  // ],
+  plugins: [
+    new UglifyJSPlugin(),
+  ],
   // devtool: 'source-map',
 }, {
   entry: './demo/demo.js',
