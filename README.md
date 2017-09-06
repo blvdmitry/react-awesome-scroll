@@ -75,9 +75,3 @@ class CustomScroll extends Component {
   }
 }
 ```
-
-
-## Roadmap
-
-- Add uglify plugin to webpack build
-- Add the disabled state for the scrollbar
