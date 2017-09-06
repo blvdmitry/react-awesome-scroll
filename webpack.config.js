@@ -37,4 +37,24 @@ module.exports = [{
   //   new UglifyJSPlugin(),
   // ],
   // devtool: 'source-map',
+}, {
+  entry: './demo/demo.js',
+  output: {
+    path: path.join(__dirname, 'demo'),
+    filename: 'demo.dist.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  module: {
+    rules: [{
+      test: /\.(js|jsx)$/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['stage-2', 'react'],
+        },
+      }
+    }],
+  },
 }];
