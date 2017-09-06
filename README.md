@@ -8,6 +8,8 @@
 - No external dependencies
 - Has 2 style presets out of the box: You can use it out of box or just with the styles needed for component to scroll content properly. (Or disable all of the styles and add them manually in your project stylesheet system).
 
+[**Demo**](https://bananabobby.github.io/react-awesome-scroll/demo/)
+
 ## Installation
 
 ### npm
