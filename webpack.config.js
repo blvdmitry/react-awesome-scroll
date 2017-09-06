@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = [{
   entry: './src/Scroll/Scroll.jsx',
@@ -22,6 +22,14 @@ module.exports = [{
         },
       }
     }],
+  },
+  externals: {
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+    }
   },
   // plugins: [
   //   new UglifyJSPlugin(),
