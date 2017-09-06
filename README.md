@@ -1,6 +1,6 @@
 # react-awesome-scroll
 
-[![npm](https://img.shields.io/badge/npm-react--awesome--scroll-brightgreen.svg?style=flat-square)]()
+[![npm](https://img.shields.io/badge/npm-react--awesome--scroll-brightgreen.svg?style=flat-square)](https://bananabobby.github.io/react-awesome-scroll/)
 [![npm version](https://img.shields.io/npm/v/react-awesome-scroll.svg?style=flat-square)](https://www.npmjs.com/package/react-awesome-scroll)
 
 - Custom styled scrollbar with exact native behavior.
