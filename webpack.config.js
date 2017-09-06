@@ -8,6 +8,8 @@ module.exports = [{
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'reactAwesomeScroll.js',
+    library: 'ReactAwesomeScroll',
+    libraryTarget: 'umd',
   },
   resolve: {
     extensions: ['.js', '.jsx'],

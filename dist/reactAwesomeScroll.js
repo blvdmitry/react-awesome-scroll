@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("react"));
+	else if(typeof define === 'function' && define.amd)
+		define(["react"], factory);
+	else if(typeof exports === 'object')
+		exports["ReactAwesomeScroll"] = factory(require("react"));
+	else
+		root["ReactAwesomeScroll"] = factory(root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -225,7 +235,7 @@ class Scroll extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.PureComponent
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = undefined;
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 /* 2 */
@@ -278,3 +288,4 @@ module.exports = undefined;
 
 /***/ })
 /******/ ]);
+});
