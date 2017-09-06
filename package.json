@@ -1,6 +1,6 @@
 {
   "name": "react-awesome-scroll",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "An easy to implement and customize React scrollbar component with OS native scroll behavior.",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,9 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack": "^3.5.5",
+    "webpack": "^3.5.5"
+  },
+  "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },

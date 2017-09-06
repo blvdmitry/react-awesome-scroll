@@ -2081,12 +2081,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-/**
- * TODO:
- * - Readme
- * - Submit to frontend collectives
- */
-
 class Scroll extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.PureComponent {
   constructor(...args) {
     var _temp;
