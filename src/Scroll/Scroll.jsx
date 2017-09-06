@@ -1,12 +1,6 @@
 import React from 'react';
 import styles from './styles';
 
-/**
- * TODO:
- * - Readme
- * - Submit to frontend collectives
- */
-
 class Scroll extends React.PureComponent {
 
   elRoot;
