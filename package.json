@@ -1,12 +1,13 @@
 {
   "name": "react-awesome-scroll",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "An easy to implement and customize React scrollbar component with OS native scroll behavior.",
   "main": "index.js",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build": "webpack",
-    "release": "np"
+    "release": "np",
+    "test": "echo"
   },
   "repository": {
     "type": "git",
